@@ -1,0 +1,23 @@
+# templates/basic_chatbot/config.yaml
+agent:
+  name: "Basic Chatbot"
+  version: "1.0.0"
+  
+components:
+  perception: "basic"           # components.perception.basic
+  memory: "local"               # components.memory.local  
+  decision: "rule_based"        # components.decision.rule_based
+  actions: "basic"              # components.actions.basic
+  learning: null                # No learning component
+
+integrations:
+  llm_provider: "openai"        # integrations.llm_providers.openai
+  required_keys: ["OPENAI_API_KEY"]
+
+interfaces:
+  - "cli"
+  - "api"
+
+optional_features:
+  - "metrics"
+  - "logging"

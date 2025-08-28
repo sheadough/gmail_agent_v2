@@ -1,0 +1,167 @@
+# Create project directory
+mkdir ai-agents-tutorial
+cd ai-agents-tutorial
+
+# Create Python virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+
+# Create project structure
+mkdir -p src/agents/{base,cognitive,memory,reasoning,execution,adaptation}
+mkdir -p src/integrations/{openai,langchain,databases}
+mkdir -p src/interfaces/{api,web,cli}
+mkdir -p config
+mkdir -p data/{raw,processed,models}
+mkdir -p tests/{unit,integration,e2e}
+mkdir -p docs
+mkdir -p scripts
+mkdir -p examples
+
+
+-------------------------------------------------------------------
+
+
+ai-agent-framework/
+├── src/
+│   ├── core/                    # Core agent engine (always present)
+│   │   ├── agent.py            # Main Agent class (single source of truth)
+│   │   ├── component.py        # Base component interface
+│   │   ├── context.py          # Context management
+│   │   └── factory.py          # Agent factory pattern
+│   ├── components/             # Pluggable components (mix-and-match)
+│   │   ├── perception/
+│   │   │   ├── __init__.py
+│   │   │   ├── basic.py        # Basic text processing
+│   │   │   └── llm_enhanced.py # LLM-enhanced perception
+│   │   ├── memory/
+│   │   │   ├── __init__.py
+│   │   │   ├── local.py        # Local memory (dict/json)
+│   │   │   └── vector.py       # Vector database memory
+│   │   ├── decision/
+│   │   │   ├── __init__.py
+│   │   │   ├── rule_based.py   # Simple rule engine
+│   │   │   └── llm_based.py    # LLM-powered decisions
+│   │   ├── actions/
+│   │   │   ├── __init__.py
+│   │   │   ├── basic.py        # Basic response actions
+│   │   │   └── tool_calling.py # External tool integration
+│   │   └── learning/
+│   │       ├── __init__.py
+│   │       ├── simple.py       # Basic feedback learning
+│   │       └── rl.py           # Reinforcement learning
+│   ├── integrations/           # External service adapters (optional)
+│   │   ├── llm_providers/
+│   │   │   ├── __init__.py
+│   │   │   ├── openai.py
+│   │   │   ├── anthropic.py
+│   │   │   └── local.py        # Local LLM integration
+│   │   ├── orchestrators/
+│   │   │   ├── __init__.py
+│   │   │   ├── langchain.py    # LangChain adapter
+│   │   │   └── llamaindex.py   # LlamaIndex adapter
+│   │   ├── vector_stores/
+│   │   │   ├── __init__.py
+│   │   │   ├── chroma.py
+│   │   │   ├── pinecone.py
+│   │   │   └── faiss.py
+│   │   └── tools/
+│   │       ├── __init__.py
+│   │       ├── web_search.py
+│   │       ├── calculator.py
+│   │       └── file_ops.py
+│   ├── interfaces/             # User interaction layers
+│   │   ├── api/               # REST API
+│   │   │   └── main.py
+│   │   ├── cli/               # Command line
+│   │   │   └── main.py
+│   │   └── web/               # Web interface
+│   │       └── app.py
+│   └── utils/                 # Shared utilities
+│       ├── config.py          # Configuration management
+│       ├── logging.py         # Logging setup
+│       └── metrics.py         # Metrics collection
+├── templates/                 # Agent variation templates
+│   ├── basic_chatbot/
+│   │   ├── config.yaml
+│   │   └── README.md
+│   ├── rag_assistant/
+│   │   ├── config.yaml
+│   │   └── README.md
+│   ├── tool_agent/
+│   │   ├── config.yaml
+│   │   └── README.md
+│   └── research_agent/
+│       ├── config.yaml
+│       └── README.md
+├── config/                    # Configuration files
+│   ├── base.yaml             # Base configuration
+│   ├── development.yaml      # Dev overrides
+│   ├── production.yaml       # Prod overrides
+│   └── templates.yaml        # Template definitions
+├── scripts/                   # Utility scripts
+│   ├── create_agent.py       # Agent generator from template
+│   ├── setup.py              # Environment setup
+│   └── deploy.py             # Deployment automation
+├── tests/                     # Test suites
+├── docs/                      # Documentation
+├── examples/                  # Usage examples
+└── docker/                    # Container definitions
+    ├── base/
+    ├── dev/
+    └── prod/
+
+-------------------------------------------------------------------
+
+Core Agent Architecture Components
+🏗️ 1. Base Components (src/agents/base/)
+
+BaseAgent: Abstract foundation for all agents
+BaseComponent: Shared component interface
+AgentContext & AgentResponse: Standardized data structures
+
+👁️ 2. Perception Module (src/agents/perception/)
+
+Advanced text analysis with intent classification, entity extraction, sentiment analysis
+LLM enhancement integration for sophisticated understanding
+Multi-layered processing with complexity and urgency scoring
+
+🧠 3. Memory Module (src/agents/memory/)
+
+Working Memory: Short-term session storage
+Episodic Memory: Long-term experience storage
+Semantic Memory: Facts and knowledge management
+Vector Integration: Enhanced search with ChromaDB
+Memory Consolidation: Intelligent data migration
+
+🎯 4. Decision Engine (src/agents/decision/)
+
+Multi-criteria decision analysis with customizable weights
+Context-aware option generation for responses, actions, tools
+Risk/benefit assessment with confidence scoring
+Decision strategies: Conservative, aggressive, adaptive approaches
+
+⚡ 5. Action Executor (src/agents/actions/)
+
+Priority-based action queuing with concurrent execution
+Built-in actions: Response, logging, escalation, calculation, preferences
+Custom action registration with validation and error handling
+Performance monitoring and retry mechanisms
+
+📚 6. Learning System (src/agents/learning/)
+
+Reinforcement Learning: Q-learning for action optimization
+Pattern Discovery: Automated behavior pattern extraction
+Feedback Analysis: Multi-modal feedback processing (explicit, implicit, system)
+Adaptation Engine: Performance-based system tuning
+
+🔄 7. Complete Integration (src/agents/core/)
+
+CompleteAgent: Orchestrates all components seamlessly
+LangChain Integration: Works with your existing LangChain setup
+Comprehensive monitoring and health checks
+Graceful error handling and fallback mechanisms
