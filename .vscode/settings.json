@@ -1,0 +1,9 @@
+{
+    "docker.defaultPlatform": "linux",
+    "files.eol": "\n",
+    "remote.containers.defaultExtensions": [
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode",
+        "ms-python.python"
+    ]
+}
